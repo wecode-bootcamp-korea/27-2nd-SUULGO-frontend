@@ -1,4 +1,4 @@
-const BASE_URL_SUULGO = 'http://10.58.1.31:8000';
+const BASE_URL_SUULGO = 'http://10.58.1.229:8000';
 
 const API = {
   login: `${BASE_URL_SUULGO}/users/kakaologin`,
