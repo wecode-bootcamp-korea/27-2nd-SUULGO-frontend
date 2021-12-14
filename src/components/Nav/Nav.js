@@ -1,7 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import BeforeLogin from './BeforeLogin/BeforeLogin';
+import AfterLogin from './AfterLogin/AfterLogin';
 
 function Nav() {
-  return <div className="nav" />;
+  const [isLogin, setIsLogin] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!!localStorage.getItem('token')) {
+      setIsLogin(true);
+    }
+  }, [location]);
+
+  return (
+    <div>
+      <NavBar>
+        <LogoImage src="/images/suulgolog.png" alt="logo" />
+        {!isLogin ? (
+          <BeforeLogin setIsLogin={setIsLogin} />
+        ) : (
+          <AfterLogin
+            username={localStorage.getItem('username')}
+            profileImage={localStorage.getItem('profileImage')}
+            setIsLogin={setIsLogin}
+          />
+        )}
+      </NavBar>
+    </div>
+  );
 }
 
 export default Nav;
+
+const NavBar = styled.nav`
+  position: sticky;
+  top: 0;
+  ${({ theme }) => theme.flexSet('space-between')}
+  height: 80px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #dbdbdb;
+  z-index: 1000;
+`;
+
+const LogoImage = styled.img`
+  width: 140px;
+`;
