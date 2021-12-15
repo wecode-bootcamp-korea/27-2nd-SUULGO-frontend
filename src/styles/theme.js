@@ -1,5 +1,10 @@
+import { css } from 'styled-components';
+
 const theme = {
-  background: '#FFFEFC',
+  mint: '#00C7AE',
+  black: '#323232',
+  borderGrey: '#DBDBDB',
+  background: '#FAFAFA',
   white: '#FFFFFF',
   vermilion: '#ff7425',
   orange: '#FF9900',
@@ -12,6 +17,15 @@ const theme = {
   fontColor: '#2D2B2B',
   fontTitle: "'Alata', sans-serif;",
   fontContent: "'Noto Sans KR', sans-serif;",
+  // mixin
+  flexSet: (justify = 'center', align = 'center') =>
+    `display: flex; justify-content: ${justify}; align-items: ${align};`,
+  absoluteCenter: css`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  `,
 };
 
 export default theme;
