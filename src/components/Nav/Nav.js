@@ -16,20 +16,18 @@ function Nav() {
   }, [location]);
 
   return (
-    <div>
-      <NavBar>
-        <LogoImage src="/images/suulgolog.png" alt="logo" />
-        {!isLogin ? (
-          <BeforeLogin setIsLogin={setIsLogin} />
-        ) : (
-          <AfterLogin
-            username={localStorage.getItem('username')}
-            profileImage={localStorage.getItem('profileImage')}
-            setIsLogin={setIsLogin}
-          />
-        )}
-      </NavBar>
-    </div>
+    <NavBar>
+      <LogoImage src="/images/suulgolog.png" alt="logo" />
+      {!isLogin ? (
+        <BeforeLogin setIsLogin={setIsLogin} />
+      ) : (
+        <AfterLogin
+          username={localStorage.getItem('username')}
+          profileImage={localStorage.getItem('profileImage')}
+          setIsLogin={setIsLogin}
+        />
+      )}
+    </NavBar>
   );
 }
 
@@ -41,7 +39,8 @@ const NavBar = styled.nav`
   ${({ theme }) => theme.flexSet('space-between')}
   height: 80px;
   padding: 10px 20px;
-  border-bottom: 1px solid #dbdbdb;
+  background: ${({ theme }) => theme.white};
+  border-bottom: 1px solid ${({ theme }) => theme.borderGrey};
   z-index: 1000;
 `;
 
