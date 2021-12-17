@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect, Fragment } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import RequestModal from '../../components/RequestModal/RequestModal';
-import TAG_LIST from './tagListData';
+import MatchTagWrapper from '../../components/MatchTagWrapper/MatchTagWrapper';
 import styled from 'styled-components';
 
 function Detail() {
@@ -36,7 +36,7 @@ function Detail() {
           <ProfileSection>
             <ProfileOverview>
               <Thumbnail>
-                <img src={userData.profile_image_url} alt="내 사진" />
+                <img src={userData.profile_image_url} alt="profile_image" />
               </Thumbnail>
               <InfoOverview>
                 <UserName>{userData.name}</UserName>
@@ -77,21 +77,7 @@ function Detail() {
               </ProfileInfo>
             </section>
             <MatchTagContainer>
-              <TagTitle># 관심태그</TagTitle>
-              {TAG_LIST.map((data, idx) => {
-                return (
-                  <Fragment key={idx}>
-                    <MatchTagCategoryName>
-                      {data.kor_title}
-                    </MatchTagCategoryName>
-                    <MatchTagList>
-                      {data.value.map((value, id) => {
-                        return <MatchTag key={id}>{value}</MatchTag>;
-                      })}
-                    </MatchTagList>
-                  </Fragment>
-                );
-              })}
+              <MatchTagWrapper userData={userData} />
             </MatchTagContainer>
           </ProfileSection>
           <AsideSection>
@@ -256,45 +242,6 @@ const Info = styled.div`
 const MatchTagContainer = styled.section`
   padding: 3rem 0;
   border-bottom: 0.0625rem solid #f2f2f2;
-`;
-
-const TagTitle = styled.h2`
-  margin-bottom: 0.875rem;
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1.5;
-  letter-spacing: -0.03125rem;
-  color: #323232;
-`;
-
-const MatchTagCategoryName = styled.div`
-  margin-bottom: 0.875rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: -0.03125rem;
-  color: #323232;
-`;
-
-const MatchTagList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-`;
-
-const MatchTag = styled.li`
-  display: inline-block;
-  flex-wrap: wrap;
-  text-align: center;
-  width: 8rem;
-  margin: 0.5rem;
-  padding: 9px 18px;
-  font-size: 1rem;
-  line-height: 1.2rem;
-  letter-spacing: -0.3px;
-  border: 1px solid #e1e1e1;
-  border-radius: 21px;
-  color: #737373;
 `;
 
 const AsideSection = styled.div`
