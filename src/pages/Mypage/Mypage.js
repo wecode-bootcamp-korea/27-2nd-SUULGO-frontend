@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MatchTagWrapper from '../../components/MatchTagWrapper/MatchTagWrapper';
 import { FaGreaterThan } from 'react-icons/fa';
-import filterTextInfo from '../../utils';
+import filterUserInfoStarsWith from '../../utils';
 import styled from 'styled-components';
 
 function Mypage() {
@@ -12,6 +12,8 @@ function Mypage() {
       .then(data => setUserData(data.result));
   }, []);
 
+  const textInfo = filterUserInfoStarsWith(userData, 'text');
+
   return (
     <div className="mypage">
       <Container>
@@ -21,7 +23,7 @@ function Mypage() {
         </ProfileImageWrapper>
         <ProfileInfoWrapper>
           <AccountInfo>
-            {filterTextInfo(userData).map(data => {
+            {textInfo.map(data => {
               const [title, info] = data;
               return (
                 <ItemContainer key={data.id}>

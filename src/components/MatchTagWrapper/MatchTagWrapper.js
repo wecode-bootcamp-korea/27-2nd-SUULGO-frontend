@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import TAG_LIST from '../../components/MatchTagWrapper/tagListData';
-import { filterTagFromUserData } from '../../utils';
+import { filterMatchTagFromUserData } from '../../utils';
 import styled from 'styled-components';
 
 function MatchTagWrapper({ userData }) {
-  const tagInfo = filterTagFromUserData(userData);
+  const tagInfo = filterMatchTagFromUserData(userData);
 
   return (
     <div className="matchTagWrapper">

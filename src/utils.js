@@ -1,16 +1,23 @@
-export default function filterTextInfo(userData) {
-  const userArray = Object.entries(userData);
-  const userTextArray = userArray.filter(el => el[0].includes('text'));
+export default function filterUserInfoStarsWith(data, startsWith) {
+  const userArray = Object.entries(data);
+  const userFilteredArray = userArray.filter(el => el[0].includes(startsWith));
 
-  return userTextArray;
+  return userFilteredArray;
 }
 
-export function filterTagFromUserData(userData) {
-  const tag = Object.values(userData).flat(Infinity);
-  const arrOfObject = tag.filter(el => typeof el === 'object');
-  const arrOfKeys = arrOfObject.map(el => Object.keys(el)).flat(Infinity);
+export function filterMatchTagFromUserData(data) {
+  const alcoholInfo = filterUserInfoStarsWith(data, 'alcohol').flat(Infinity);
+  const filteredMatchTag = alcoholInfo
+    .filter(el => typeof el === 'object')
+    .map(el => el.name);
 
-  return arrOfKeys;
+  return filteredMatchTag;
+}
+
+export function changeDateForm(date) {
+  const dateForm =
+    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+  return dateForm;
 }
 
 export function changeDateForm(date) {
