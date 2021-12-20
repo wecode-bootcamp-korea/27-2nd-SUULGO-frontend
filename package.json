@@ -12,6 +12,7 @@
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.1.1",
     "react-scripts": "4.0.3",
+    "react-select": "^5.2.1",
     "styled-components": "^5.3.3",
     "styled-reset": "^4.3.4",
     "survey-react": "^1.9.2",
