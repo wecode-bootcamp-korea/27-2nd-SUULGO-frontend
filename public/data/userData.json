@@ -14,24 +14,61 @@
     "text_favorite_food": "막창",
     "text_favorite_hobby": "농구",
     "alcohol_limit": {
-      "반병": true
+      "name": "N병",
+      "is_matching": false
     },
-    "alcohol_level": { "11도 ~ 20도": true },
-    "alcohol_drinking_methods": [{ "온더락": true }, { "폭탄주": true }],
+    "alcohol_level": {
+      "name": "상관없음",
+      "is_matching": false
+    },
+    "alcohol_drinking_methods": [
+      {
+        "name": "온더락",
+        "is_matching": true
+      },
+      {
+        "name": "샷",
+        "is_matching": false
+      },
+      {
+        "name": "음료수",
+        "is_matching": false
+      }
+    ],
     "alcohol_categories": [
-      { "와인": true },
-      { "진": false },
-      { "위스키": true }
+      {
+        "name": "무알콜",
+        "is_matching": true
+      },
+      {
+        "name": "데킬라",
+        "is_matching": false
+      },
+      {
+        "name": "소주",
+        "is_matching": true
+      },
+      {
+        "name": "맥주",
+        "is_matching": false
+      },
+      {
+        "name": "막걸리",
+        "is_matching": true
+      }
     ],
     "alcohol_flavors": [
       {
-        "싱그러운": true
+        "name": "고소",
+        "is_matching": false
       },
       {
-        "묵직": true
+        "name": "깔끔",
+        "is_matching": false
       },
       {
-        "달콤": true
+        "name": "달콤",
+        "is_matching": true
       }
     ]
   }
