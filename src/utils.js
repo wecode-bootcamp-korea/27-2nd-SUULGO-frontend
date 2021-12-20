@@ -19,15 +19,3 @@ export function changeDateForm(date) {
     date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
   return dateForm;
 }
-
-export function changeDateForm(date) {
-  const dateForm =
-    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-  return dateForm;
-}
-
-export function changeDateForm(date) {
-  const dateForm =
-    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-  return dateForm;
-}
