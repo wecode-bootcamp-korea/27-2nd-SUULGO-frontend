@@ -1,22 +1,38 @@
 {
   "result": {
     "id": 1,
-    "name": "오동녘어진이",
+    "text_name": "오동녘어진이",
+    "text_email": "wecode@wecodebootcamp.com",
     "profile_image_url": "/images/mangorookie.jpeg",
-    "gender": "남",
-    "mbti_title": "INFP",
-    "mbti_description": "소심한 관종",
-    "stack": "프론트",
-    "alcohol_limit": "한병",
-    "alcohol_level": "11도 ~ 20도",
-    "favorite_place": "경기도 뉴욕시",
-    "favorite_food": "막창",
-    "hobby": "농구",
-    "email": "email@email.com",
-    "class_number": 27,
-    "drinking_methods": ["온더락", "폭탄주"],
-    "alcohol_categories": ["와인"],
-    "flavors": ["싱그러운", "고소", "깔끔", "묵직"],
-    "comment": "삼겹살에 쐬주 한잔 하고 싶네요"
+    "text_gender": "남",
+    "text_mbti_title": "INFP",
+    "text_mbti_description": "소심한 관종",
+    "text_class_number": 27,
+    "text_stack": "프론트",
+    "text_comment": "삼겹살에 쐬주 한잔 하고 싶네요",
+    "text_favorite_place": "경기도 뉴욕시",
+    "text_favorite_food": "막창",
+    "text_favorite_hobby": "농구",
+    "alcohol_limit": {
+      "반병": true
+    },
+    "alcohol_level": { "11도 ~ 20도": true },
+    "alcohol_drinking_methods": [{ "온더락": true }, { "폭탄주": true }],
+    "alcohol_categories": [
+      { "와인": true },
+      { "진": false },
+      { "위스키": true }
+    ],
+    "alcohol_flavors": [
+      {
+        "싱그러운": true
+      },
+      {
+        "묵직": true
+      },
+      {
+        "달콤": true
+      }
+    ]
   }
 }
