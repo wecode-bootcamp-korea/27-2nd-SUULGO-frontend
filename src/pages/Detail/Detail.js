@@ -107,8 +107,7 @@ function Detail() {
           <RequestModal
             isOpen={isModalOpen}
             close={closeModal}
-            name={userData.text_name}
-            setOpen={setIsModalOpen}
+            id={userData.id}
           />
         </Container>
       )}
