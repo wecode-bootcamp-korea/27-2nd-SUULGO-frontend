@@ -1,18 +1,20 @@
 import React, { Fragment } from 'react';
 import TAG_LIST from '../../components/MatchTagWrapper/tagListData';
+import { filterTagFromUserData } from '../../utils';
 import styled from 'styled-components';
 
 function MatchTagWrapper({ userData }) {
-  const tagInfo = Object.values(userData).flat(Infinity);
+  const tagInfo = filterTagFromUserData(userData);
+
   return (
     <div className="matchTagWrapper">
       <TagTitle># 관심태그</TagTitle>
-      {TAG_LIST.map((data, idx) => {
+      {TAG_LIST.map((alcoholTag, idx) => {
         return (
           <Fragment key={idx}>
-            <MatchTagCategoryName>{data.kor_title}</MatchTagCategoryName>
+            <MatchTagCategoryName>{alcoholTag.kor_title}</MatchTagCategoryName>
             <MatchTagList>
-              {data.value.map((value, id) => {
+              {alcoholTag.value.map((value, id) => {
                 return (
                   <MatchTag value={value} tagInfo={tagInfo} key={id}>
                     {value}
@@ -65,8 +67,8 @@ const MatchTag = styled.li`
   letter-spacing: -0.3px;
   border: 1px solid #e1e1e1;
   border-radius: 21px;
-  color: ${({ value, tagInfo }) =>
-    tagInfo.includes(value) ? 'white' : '#737373'};
-  background-color: ${({ value, tagInfo }) =>
-    tagInfo.includes(value) ? '#00c7ae' : 'white'};
+  ${({ value, tagInfo }) =>
+    `color: ${tagInfo.includes(value) ? 'white' : '#737373'};
+    background-color: ${tagInfo.includes(value) ? '#00c7ae' : 'white'}
+    `}
 `;

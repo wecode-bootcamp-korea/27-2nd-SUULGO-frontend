@@ -15,6 +15,19 @@ function Detail() {
   };
 
   const [userData, setUserData] = useState({});
+  const {
+    text_name,
+    profile_image_url,
+    text_gender,
+    text_mbti_title,
+    text_mbti_description,
+    text_class_number,
+    text_stack,
+    text_comment,
+    text_favorite_place,
+    text_favorite_food,
+    text_favorite_hobby,
+  } = userData;
   useEffect(() => {
     fetch('/data/userData.json')
       .then(res => res.json())
@@ -36,15 +49,15 @@ function Detail() {
           <ProfileSection>
             <ProfileOverview>
               <Thumbnail>
-                <img src={userData.profile_image_url} alt="profile_image" />
+                <img src={profile_image_url} alt="내 사진" />
               </Thumbnail>
               <InfoOverview>
-                <UserName>{userData.name}</UserName>
-                <UserGender>{userData.gender}</UserGender>
+                <UserName>{text_name}</UserName>
+                <UserGender>{text_gender}</UserGender>
                 <YearFrontBack>
-                  <span>{userData.class_number} 기</span>
+                  <span>{text_class_number} 기</span>
                   <span>/</span>
-                  <span>{userData.stack}</span>
+                  <span>{text_stack}</span>
                 </YearFrontBack>
               </InfoOverview>
             </ProfileOverview>
@@ -55,24 +68,24 @@ function Detail() {
             <section ref={aboutRef}>
               <IntroduceWrapper>
                 <IntroTitle>나에게 술이란 ?</IntroTitle>
-                <OneLineIntro>" {userData.comment} "</OneLineIntro>
+                <OneLineIntro>" {text_comment} "</OneLineIntro>
               </IntroduceWrapper>
               <ProfileInfo>
                 <InfoWrapper>
-                  <Info>{userData.mbti_title}</Info>
-                  <Info>{userData.mbti_description}</Info>
+                  <Info>{text_mbti_title}</Info>
+                  <Info>{text_mbti_description}</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                   <Info>선호 장소</Info>
-                  <Info>{userData.favorite_place}</Info>
+                  <Info>{text_favorite_place}</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                   <Info>취미</Info>
-                  <Info>{userData.hobby}</Info>
+                  <Info>{text_favorite_hobby}</Info>
                 </InfoWrapper>
                 <InfoWrapper>
                   <Info>선호 안주</Info>
-                  <Info ref={tagRef}>{userData.favorite_food}</Info>
+                  <Info ref={tagRef}>{text_favorite_food}</Info>
                 </InfoWrapper>
               </ProfileInfo>
             </section>
@@ -84,8 +97,8 @@ function Detail() {
             <UserProfileAside>
               <RequestBanner>
                 <RequestText>
-                  코드치다가 지친 USER 님! <br /> {userData.name} 님과 코드말고
-                  술잔 부딪치시는 건 어떠세요 ?
+                  코드치다가 지친 USER 님! <br /> {userData.text_name} 님과
+                  코드말고 술잔 부딪치시는 건 어떠세요 ?
                 </RequestText>
                 <RequestBtn onClick={openModal}>술고!</RequestBtn>
               </RequestBanner>
@@ -94,7 +107,7 @@ function Detail() {
           <RequestModal
             isOpen={isModalOpen}
             close={closeModal}
-            name={userData.name}
+            name={userData.text_name}
             setOpen={setIsModalOpen}
           />
         </Container>
