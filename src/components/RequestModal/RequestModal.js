@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
-// FIXME: api 완성 시 url 변경하기
-// import { changeDateForm } from '../../utils';
+import { changeDateForm } from '../../utils';
+import API from '../../config';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function RequestModal({ isOpen, close, id }) {
   const [startDate, setStartDate] = useState(new Date());
-  // FIXME: api 완성 시 url 변경하기
-  // const dateInForm = changeDateForm(startDate);
+  const dateInForm = changeDateForm(startDate);
 
   const sendAlarm = () => {
-    // FIXME: api 완성 시 url 변경하기
-    // fetch('REQUEST_URL', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     respondent_id: id,
-    //     time: dateInForm,
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .then(response => {
-    //     if (response.message === 'success') {
-    //       alert('전송완료!');
-    //     }
-    //   });
+    fetch(API.promise, {
+      method: 'POST',
+      headers: { Authorization: localStorage.getItem('Authorization') },
+      body: JSON.stringify({
+        respondent_id: id,
+        time: dateInForm,
+      }),
+    })
+      .then(res => res.json())
+      .then(response => {
+        if (response.message === 'success') {
+          alert('전송완료!');
+        }
+      });
   };
 
   return (
