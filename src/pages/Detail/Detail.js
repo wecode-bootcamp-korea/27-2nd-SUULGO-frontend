@@ -55,7 +55,11 @@ function Detail() {
                 <UserName>{text_name}</UserName>
                 <UserGender>{text_gender}</UserGender>
                 <YearFrontBack>
-                  <span>{text_class_number} 기</span>
+                  <span>
+                    {text_class_number === 1004
+                      ? '사랑하는 멘토님^^'
+                      : `${text_class_number}기`}
+                  </span>
                   <span>/</span>
                   <span>{text_stack}</span>
                 </YearFrontBack>
