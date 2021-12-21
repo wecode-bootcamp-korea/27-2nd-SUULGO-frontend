@@ -29,7 +29,7 @@ function Mypage() {
                 <ItemContainer key={data.id}>
                   <Item>
                     <Title>{title.slice(5).toUpperCase()}</Title>
-                    <Info>{info}</Info>
+                    <Info>{info === 1004 ? '사랑하는 멘토님^^' : info}</Info>
                   </Item>
                   <FaGreaterThan className="icon" />
                 </ItemContainer>
