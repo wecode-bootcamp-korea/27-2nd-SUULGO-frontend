@@ -1,21 +1,25 @@
 import { React, useState, useEffect, Fragment } from 'react';
-
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Icon from '../List/Icon';
 import ListMainCard from '../List/ListMainCard';
+import API from '../../config';
 
 function List() {
   const [memberList, setmemberList] = useState([]);
 
+  const location = useLocation();
+
   useEffect(() => {
-    fetch('/data/mockdata.json', {
-      method: 'GET',
-    })
+    fetch(
+      `${API.users}${location.search}
+    `
+    )
       .then(res => res.json())
       .then(data => {
-        setmemberList(data);
+        setmemberList(data.result);
       });
-  }, []);
+  }, [location.search]);
 
   return (
     <div>
