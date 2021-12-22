@@ -83,6 +83,40 @@ function Survey() {
     }
   };
 
+  // 목적: 현재의 currentPage에 따라서 다른 설문조사 화면을 보여준다.
+  // switch
+  // => object
+  // Object
+  // {
+  //  key:value
+  // }
+  //
+  const currentServay = {
+    single: (
+      <SingleQuestion
+        surveyLists={SURVEY_DATA[currentPage]}
+        singleValue={singleValue}
+        setSingleValue={setSingleValue}
+        surveyCategory={surveyCategory}
+      />
+    ),
+    plural: (
+      <PluralQuestion
+        surveyLists={SURVEY_DATA[currentPage].answer}
+        pluralValue={pluralValue}
+        setPluralValue={setPluralValue}
+        surveyCategory={surveyCategory}
+      />
+    ),
+    free: (
+      <FreeQuestion
+        surveyLists={SURVEY_DATA[currentPage].answer}
+        freeValue={freeValue}
+        setFreeValue={setFreeValue}
+      />
+    ),
+  };
+
   return (
     <Section>
       <Thumbnail src="/images/surveyimg.png" />
@@ -96,45 +130,7 @@ function Survey() {
             <IndicateNumber>{completedPercent}%</IndicateNumber>
           </IndicateBox>
           <SurveyTitle>{SURVEY_DATA[currentPage].question}</SurveyTitle>
-          {(() => {
-            switch (SURVEY_DATA[currentPage].type) {
-              case 'single':
-                return (
-                  <SingleQuestion
-                    surveyLists={SURVEY_DATA[currentPage]}
-                    singleValue={singleValue}
-                    setSingleValue={setSingleValue}
-                    surveyCategory={surveyCategory}
-                  />
-                );
-              case 'plural':
-                return (
-                  <PluralQuestion
-                    surveyLists={SURVEY_DATA[currentPage].answer}
-                    pluralValue={pluralValue}
-                    setPluralValue={setPluralValue}
-                    surveyCategory={surveyCategory}
-                  />
-                );
-              case 'free':
-                return (
-                  <FreeQuestion
-                    surveyLists={SURVEY_DATA[currentPage].answer}
-                    freeValue={freeValue}
-                    setFreeValue={setFreeValue}
-                  />
-                );
-              case 'number':
-                return (
-                  <NumberQuestion
-                    surveyLists={SURVEY_DATA[currentPage].answer}
-                    setNumberValue={setNumberValue}
-                  />
-                );
-              default:
-                return null;
-            }
-          })()}
+          {currentServay[SURVEY_DATA[currentPage].type]}
           <ButtonWrap>
             <WarnnigMessage>
               {!numberValue && `옵션을 선택해주세요`}
