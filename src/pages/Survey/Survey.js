@@ -40,6 +40,12 @@ function Survey() {
 
   const surveyCategory = SURVEY_DATA[currentPage].category;
 
+  const isFreeValue =
+    !!freeValue.hobby &&
+    !!freeValue.favorite_place &&
+    !!freeValue.favorite_food &&
+    !!freeValue.comment;
+
   const submitSurvey = () => {
     if (!!localStorage.getItem('token')) {
       fetch(API.survey, {
@@ -54,6 +60,7 @@ function Survey() {
           mbti: singleValue.mbti,
           alcohol_category: pluralValue.alcohol_category,
           alcohol_level: singleValue.alcohol_level,
+          alcohol_limit: singleValue.alcohol_limit,
           flavor: pluralValue.flavor,
           drinking_method: pluralValue.drinking_method,
           hobby: freeValue.hobby,
@@ -66,10 +73,14 @@ function Survey() {
         .then(res => {
           switch (res.message) {
             case 'SUCCESS':
+              alert('술고에 오신걸 환영합니다!!!!');
               navigate('/');
               break;
             case 'KEY_ERROR':
               alert('입력되지 않은 항목을 입력후 제출해 주세요!');
+              break;
+            case 'ALREDY_EXISTS':
+              alert('이미 정보가 입력되어 있습니다. 술고를 즐겨주세요^^');
               break;
             default:
               break;
@@ -153,7 +164,9 @@ function Survey() {
                   다음
                 </NextButton>
               ) : (
-                <NextButton onClick={submitSurvey}>제출하기</NextButton>
+                <NextButton onClick={submitSurvey} disabled={!isFreeValue}>
+                  제출하기
+                </NextButton>
               )}
             </ButtonBox>
           </ButtonWrap>

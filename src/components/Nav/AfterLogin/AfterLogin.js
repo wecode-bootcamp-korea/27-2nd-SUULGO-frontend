@@ -1,13 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { BsBell } from 'react-icons/bs';
 import { AiFillHeart } from 'react-icons/ai';
 
 function AfterLogin({ username, profileImage, setIsLogin }) {
+  const navigate = useNavigate();
+  const { Kakao } = window;
   const clickToLogout = () => {
     setIsLogin(false);
+    if (!Kakao.Auth.getAccessToken()) {
+      alert('로그아웃 실패! 가지마세요^^');
+      return;
+    }
+    Kakao.Auth.logout(function () {});
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('profileImage');
+    navigate('/');
   };
 
   return (
