@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import RequestModal from '../../components/RequestModal/RequestModal';
 import MatchTagWrapper from '../../components/MatchTagWrapper/MatchTagWrapper';
+import API from '../../config';
 import styled from 'styled-components';
 
 function Detail() {
@@ -33,6 +35,13 @@ function Detail() {
       .then(res => res.json())
       .then(data => setUserData(data.result));
   }, []);
+
+  const { id } = useParams();
+  useEffect(() => {
+    fetch(`${API.users}/${id}`)
+      .then(res => res.json())
+      .then(data => setUserData(data.result));
+  }, [id]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {

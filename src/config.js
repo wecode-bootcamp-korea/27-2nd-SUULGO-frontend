@@ -4,7 +4,7 @@ const API = {
   login: `${BASE_URL_SUULGO}/users/kakaologin`,
   main: `${BASE_URL_SUULGO}`,
   list: `${BASE_URL_SUULGO}/list`,
-  detail: `${BASE_URL_SUULGO}/detail`,
+  users: `${BASE_URL_SUULGO}/users`,
   survey: `${BASE_URL_SUULGO}/survey`,
   mypage: `${BASE_URL_SUULGO}/mypage`,
 };
