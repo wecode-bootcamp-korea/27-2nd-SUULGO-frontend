@@ -13,6 +13,7 @@ function Icon() {
               <IconComponent
                 key={list.id}
                 name={list.name}
+                id={list.id}
                 icon={list.icon_name}
               />
             );

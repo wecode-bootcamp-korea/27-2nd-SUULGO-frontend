@@ -1,10 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import IconGroup from './IconGroup';
 import styled from 'styled-components';
+function IconComponent({ name, icon, id }) {
+  const navigate = useNavigate();
+  const goToIconList = id => {
+    navigate(`?alcohol_category_id=${id}`);
+  };
 
-function IconComponent({ name, icon }) {
   return (
-    <IconAlcoholBox>
+    <IconAlcoholBox
+      onClick={() => {
+        goToIconList(id);
+      }}
+    >
       <IconGroup icon={icon} />
       <ItemName>{name}</ItemName>
     </IconAlcoholBox>
