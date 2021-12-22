@@ -17,18 +17,22 @@ function BeforeLogin({ setIsLogin }) {
         })
           .then(res => res.json())
           .then(data => {
-            if (data.MESSAGE) {
+            if (data.message) {
               localStorage.setItem('token', data.TOKEN);
               localStorage.setItem(
                 'username',
-                data.RESULT.kakao_account.profile.nickname
+                data.result.kakao_account.profile.nickname
               );
               localStorage.setItem(
                 'profileImage',
-                data.RESULT.kakao_account.profile.profile_image_url
+                data.result.kakao_account.profile.profile_image_url
               );
               setIsLogin(true);
-              navigate('/');
+              if (!!data.survey) {
+                navigate('/');
+              } else {
+                navigate('/survey');
+              }
             }
           });
         setIsLogin(true);
