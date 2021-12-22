@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { FaWineBottle } from 'react-icons/fa';
 import { GiBeerStein } from 'react-icons/gi';
 import { FaWineGlassAlt } from 'react-icons/fa';
@@ -10,63 +10,76 @@ import { ImGlass2 } from 'react-icons/im';
 import { ImGlass } from 'react-icons/im';
 import { FaPrescriptionBottleAlt } from 'react-icons/fa';
 import { GiHeartBottle } from 'react-icons/gi';
+import styled from 'styled-components';
 
 function Icon() {
   return (
     <div>
       <IconContainer>
         <IconList>
-          <IconAlcoholBox>
-            <SojuIcon />
-            <ItemName>소주</ItemName>
-          </IconAlcoholBox>
-
-          <IconAlcoholBox>
-            <BeerIcon />
-            <ItemName>맥주</ItemName>
-          </IconAlcoholBox>
-
-          <IconAlcoholBox>
-            <WineIcon />
-            <ItemName>와인</ItemName>
-          </IconAlcoholBox>
-
-          <IconAlcoholBox>
-            <SakeIcon />
-            <ItemName>사케</ItemName>
-          </IconAlcoholBox>
-
-          <IconAlcoholBox>
-            <RiceBeer />
-            <ItemName>막걸리</ItemName>
-          </IconAlcoholBox>
+          <Link to="/list?alcohol_category_id=1">
+            <IconAlcoholBox>
+              <SojuIcon />
+              <ItemName>소주</ItemName>
+            </IconAlcoholBox>
+          </Link>
+          <Link to="/list?alcohol_category_id=2">
+            <IconAlcoholBox>
+              <BeerIcon />
+              <ItemName>맥주</ItemName>
+            </IconAlcoholBox>
+          </Link>
+          <Link to="/list?alcohol_category_id=3">
+            <IconAlcoholBox>
+              <WineIcon />
+              <ItemName>와인</ItemName>
+            </IconAlcoholBox>
+          </Link>
+          <Link to="/list?alcohol_category_id=4">
+            <IconAlcoholBox>
+              <SakeIcon />
+              <ItemName>사케</ItemName>
+            </IconAlcoholBox>
+          </Link>
+          <Link to="/list?alcohol_category_id=5">
+            <IconAlcoholBox>
+              <RiceBeer />
+              <ItemName>막걸리</ItemName>
+            </IconAlcoholBox>
+          </Link>
         </IconList>
 
         <IconOtherList>
-          <IconAlcoholBox>
-            <Wiskey />
-            <ItemName>위스키</ItemName>
-          </IconAlcoholBox>
-
-          <IconAlcoholBox>
-            <HighAlCoholIcon />
-            <ItemName>데킬라</ItemName>
-          </IconAlcoholBox>
-
-          <IconAlcoholBox>
-            <JinIcon />
-            <ItemName>진</ItemName>
-          </IconAlcoholBox>
-
-          <IconAlcoholBox>
-            <VodkaIcon />
-            <ItemName>보드카</ItemName>
-          </IconAlcoholBox>
-
-          <IconAlcoholBox>
-            <NoneAcoholIcon />
-            <ItemName>무알콜</ItemName>
-          </IconAlcoholBox>
+          <Link to="/list?alcohol_category_id=6">
+            <IconAlcoholBox>
+              <Wiskey />
+              <ItemName>위스키</ItemName>
+            </IconAlcoholBox>
+          </Link>
+          <Link to="/list?alcohol_category_id=7">
+            <IconAlcoholBox>
+              <HighAlCoholIcon />
+              <ItemName>데킬라</ItemName>
+            </IconAlcoholBox>
+          </Link>
+          <Link to="/list?alcohol_category_id=8">
+            <IconAlcoholBox>
+              <JinIcon />
+              <ItemName>진</ItemName>
+            </IconAlcoholBox>
+          </Link>
+          <Link to="/list?alcohol_category_id=9">
+            <IconAlcoholBox>
+              <VodkaIcon />
+              <ItemName>보드카</ItemName>
+            </IconAlcoholBox>
+          </Link>
+          <Link to="/list?alcohol_category_id=10">
+            <IconAlcoholBox>
+              <NoneAcoholIcon />
+              <ItemName>무알콜</ItemName>
+            </IconAlcoholBox>
+          </Link>
         </IconOtherList>
       </IconContainer>
     </div>

@@ -54,9 +54,8 @@ export default Main;
 const MainPage = styled.div``;
 
 const Wrapper = styled.div`
-  display: flex;
-  margin-top: 120px;
-  margin-left: 100px;
+  ${({ theme }) => theme.flexSet()}
+  margin-top: 50px;
 `;
 
 const MainPageLeft = styled.div`
@@ -112,11 +111,15 @@ const FindService = styled.div`
   cursor: pointer;
 `;
 
-const MainPageRight = styled.div``;
-
-const RightImage = styled.img`
+const MainPageRight = styled.div`
   width: 500px;
   height: 500px;
+`;
+
+const RightImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   margin-left: 120px;
   padding-top: 50px;
   background-color: white;
