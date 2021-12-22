@@ -64,6 +64,24 @@ function Survey() {
       })
         .then(response => response.json())
         .then(res => {
+          // success => navigate
+          //
+          // error => invalid user
+          // error => email invalid
+          // error => password invalid
+
+          if (res.message === 'SUCCESS') {
+            navigate('/');
+            return;
+          }
+
+          const errMsg = {
+            INVALID_USER: '등록되지 않은 유저입니다.',
+            INVALID_ID: 'ID가 잘못됬습니다.',
+          };
+
+          alert(errMsg[res.message]);
+
           switch (res.message) {
             case 'SUCCESS':
               navigate('/');
@@ -90,7 +108,10 @@ function Survey() {
   // {
   //  key:value
   // }
+  // hash table
   //
+  //
+
   const currentServay = {
     single: (
       <SingleQuestion
