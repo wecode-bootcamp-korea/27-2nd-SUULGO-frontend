@@ -17,6 +17,7 @@ function AfterLogin({ username, profileImage, setIsLogin }) {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('profileImage');
+    localStorage.removeItem('survey');
     navigate('/');
   };
 
@@ -28,10 +29,10 @@ function AfterLogin({ username, profileImage, setIsLogin }) {
           <Bell />
           <Heart />
         </BellButton>
-        <Link to="/mypage">
+        <Link to="/profile">
           <UserProfile src={profileImage} alt="profile" />
         </Link>
-        <Link to="/mypage">
+        <Link to="/profile">
           <UserName>{username} 위코더님</UserName>
         </Link>
         <LogoutButton onClick={clickToLogout}>로그아웃</LogoutButton>

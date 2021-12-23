@@ -19,6 +19,7 @@ function BeforeLogin({ setIsLogin }) {
           .then(data => {
             if (data.message) {
               localStorage.setItem('token', data.token);
+              localStorage.setItem('survey', data.survey);
               localStorage.setItem(
                 'username',
                 data.result.kakao_account.profile.nickname

@@ -3,14 +3,25 @@ import MatchTagWrapper from '../../components/MatchTagWrapper/MatchTagWrapper';
 import { FaGreaterThan } from 'react-icons/fa';
 import filterUserInfoStarsWith from '../../utils';
 import styled from 'styled-components';
+import API from '../../config';
+import { useNavigate } from 'react-router-dom';
 
 function Mypage() {
   const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
+
   useEffect(() => {
-    fetch('/data/userData.json')
-      .then(res => res.json())
-      .then(data => setUserData(data.result));
-  }, []);
+    if (!!localStorage.getItem('survey')) {
+      fetch(`${API.users}/profile`, {
+        headers: { Authorization: localStorage.getItem('token') },
+      })
+        .then(res => res.json())
+        .then(data => setUserData(data.result));
+    } else {
+      alert('설문조사해주세요^^');
+      navigate('/survey');
+    }
+  }, [navigate]);
 
   const textInfo = filterUserInfoStarsWith(userData, 'text');
 
@@ -19,7 +30,7 @@ function Mypage() {
       <Container>
         <MainTitle>계정 설정</MainTitle>
         <ProfileImageWrapper>
-          <ProfileImage src="/images/mangorookie.jpeg" alt="profileImage" />
+          <ProfileImage src={userData.profile_image_url} alt="profileImage" />
         </ProfileImageWrapper>
         <ProfileInfoWrapper>
           <AccountInfo>

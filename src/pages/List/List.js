@@ -11,9 +11,11 @@ function List() {
   const location = useLocation();
 
   useEffect(() => {
-    if (!!localStorage.getItem('token')) {
+    if (!!localStorage.getItem('survey')) {
       if (location.pathname === '/list/matching') {
-        fetch(`${API.users}/matching`)
+        fetch(`${API.users}/matching`, {
+          headers: { Authorization: localStorage.getItem('token') },
+        })
           .then(res => res.json())
           .then(data => {
             setmemberList(data.result);
@@ -21,7 +23,10 @@ function List() {
       } else {
         fetch(
           `${API.users}${location.search}
-        `
+        `,
+          {
+            headers: { Authorization: localStorage.getItem('token') },
+          }
         )
           .then(res => res.json())
           .then(data => {
@@ -45,7 +50,10 @@ function List() {
               {memberList.map(list => {
                 return (
                   <ListMainCard
+                    location={location.pathname}
+                    point={list.matching_point}
                     key={list.id}
+                    id={list.id}
                     name={list.name}
                     classNumber={list.class_number}
                     img={list.profile_image_url}
@@ -82,7 +90,7 @@ const CardWrap = styled.div`
 const MainCard = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 67%;
+  width: 960px;
 `;
 
 export default List;

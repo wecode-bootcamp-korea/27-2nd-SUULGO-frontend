@@ -26,7 +26,7 @@ const TAG_LIST = [
     id: 3,
     eng_title: 'alcohol_level',
     kor_title: '도수',
-    value: ['0도 ~ 10도', '11도 ~ 20도', '21도 ~', '상관없음'],
+    value: ['0~10', '11~20', '21~', '상관없음'],
   },
   {
     id: 4,
