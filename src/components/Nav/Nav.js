@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import BeforeLogin from './BeforeLogin/BeforeLogin';
 import AfterLogin from './AfterLogin/AfterLogin';
@@ -17,7 +17,9 @@ function Nav() {
 
   return (
     <NavBar>
-      <LogoImage src="/images/suulgolog.png" alt="logo" />
+      <Link to="/">
+        <LogoImage src="/images/suulgolog.png" alt="logo" />
+      </Link>
       {!isLogin ? (
         <BeforeLogin setIsLogin={setIsLogin} />
       ) : (

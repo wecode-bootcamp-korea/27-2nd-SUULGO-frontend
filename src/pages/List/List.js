@@ -11,28 +11,41 @@ function List() {
   const location = useLocation();
 
   useEffect(() => {
-    fetch(
-      `${API.users}${location.search}
-    `
-    )
-      .then(res => res.json())
-      .then(data => {
-        setmemberList(data.result);
-      });
-  }, [location.search]);
+    if (!!localStorage.getItem('token')) {
+      if (location.pathname === '/list/matching') {
+        fetch(`${API.users}/matching`)
+          .then(res => res.json())
+          .then(data => {
+            setmemberList(data.result);
+          });
+      } else {
+        fetch(
+          `${API.users}${location.search}
+        `
+        )
+          .then(res => res.json())
+          .then(data => {
+            setmemberList(data.result);
+          });
+      }
+    } else {
+      alert('로그인해주세요^^');
+    }
+  }, [location.pathname, location.search]);
 
   return (
     <div>
       <ListPage>
         <Fragment>
           <ListImage src="/images/스인.jpg" alt="listPageHeadPhoto" />
-          <Icon />
+          {location.pathname === '/list' && <Icon />}
           <ListMessage>추천 위코더</ListMessage>
           <MainCard>
             {memberList.map(list => {
               return (
                 <ListMainCard
                   key={list.id}
+                  id={list.id}
                   name={list.name}
                   classNumber={list.class_number}
                   img={list.profile_image_url}

@@ -17,6 +17,16 @@ function Detail() {
   };
 
   const [userData, setUserData] = useState({});
+
+  const { id } = useParams();
+  useEffect(() => {
+    fetch(`${API.users}/${id}`, {
+      headers: { Authorization: localStorage.getItem('token') },
+    })
+      .then(res => res.json())
+      .then(data => setUserData(data.result));
+  }, [id]);
+
   const {
     text_name,
     profile_image_url,
@@ -30,18 +40,6 @@ function Detail() {
     text_favorite_food,
     text_favorite_hobby,
   } = userData;
-  useEffect(() => {
-    fetch('/data/userData.json')
-      .then(res => res.json())
-      .then(data => setUserData(data.result));
-  }, []);
-
-  const { id } = useParams();
-  useEffect(() => {
-    fetch(`${API.users}/${id}`)
-      .then(res => res.json())
-      .then(data => setUserData(data.result));
-  }, [id]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
