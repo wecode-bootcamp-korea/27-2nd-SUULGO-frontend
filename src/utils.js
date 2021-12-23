@@ -1,4 +1,4 @@
-export default function filterUserInfoStarsWith(data, startsWith) {
+export default function filterUserInfoStarsWith(data = {}, startsWith) {
   const userArray = Object.entries(data);
   const userFilteredArray = userArray.filter(el => el[0].includes(startsWith));
 

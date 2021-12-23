@@ -20,10 +20,25 @@ function RequestModal({ isOpen, close, id }) {
     })
       .then(res => res.json())
       .then(response => {
-        if (response.message === 'success') {
-          alert('전송완료!');
+        switch (response.message) {
+          case 'SUCCESS':
+            alert('전송완료 !');
+            break;
+          case 'ALREADY_EXISTS':
+            alert('이미 약속이 있어요 ㅠ');
+            break;
+          case 'DATE_ERROR':
+            alert('날짜가 이미 지났어요~!');
+            break;
+          case 'KEY_ERROR':
+          case 'DoesNotExist':
+            alert('예상치 못한 에러 ㅠ 처음부터 다시 시작해주세요 !');
+            break;
+          default:
+            break;
         }
-      });
+      })
+      .then(close);
   };
 
   return (

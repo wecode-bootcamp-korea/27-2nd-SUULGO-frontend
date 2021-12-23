@@ -7,6 +7,6 @@ const API = {
   users: `${BASE_URL_SUULGO}/users`,
   survey: `${BASE_URL_SUULGO}/surveys`,
   mypage: `${BASE_URL_SUULGO}/mypage`,
-  promise: `${BASE_URL_SUULGO}/users/promise`,
+  promise: `${BASE_URL_SUULGO}/users/appointment`,
 };
 export default API;

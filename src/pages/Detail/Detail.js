@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import RequestModal from '../../components/RequestModal/RequestModal';
 import MatchTagWrapper from '../../components/MatchTagWrapper/MatchTagWrapper';
 import API from '../../config';
@@ -18,14 +18,22 @@ function Detail() {
 
   const [userData, setUserData] = useState({});
 
+  const navigate = useNavigate();
+
   const { id } = useParams();
+
   useEffect(() => {
-    fetch(`${API.users}/${id}`, {
-      headers: { Authorization: localStorage.getItem('token') },
-    })
-      .then(res => res.json())
-      .then(data => setUserData(data.result));
-  }, [id]);
+    if (!!localStorage.getItem('survey')) {
+      fetch(`${API.users}/${id}`, {
+        headers: { Authorization: localStorage.getItem('token') },
+      })
+        .then(res => res.json())
+        .then(data => setUserData(data.result));
+    } else {
+      alert('설문조사해주세요^^');
+      navigate('/survey');
+    }
+  }, [id, navigate]);
 
   const {
     text_name,
@@ -48,6 +56,8 @@ function Detail() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const userName = localStorage.getItem('username');
 
   return (
     <div className="detail">
@@ -108,8 +118,8 @@ function Detail() {
             <UserProfileAside>
               <RequestBanner>
                 <RequestText>
-                  코드치다가 지친 USER 님! <br /> {userData.text_name} 님과
-                  코드말고 술잔 부딪치시는 건 어떠세요 ?
+                  코드치다가 지친 {userName} 님! <br /> {userData.text_name}{' '}
+                  님과 코드말고 술잔 부딪치시는 건 어떠세요 ?
                 </RequestText>
                 <RequestBtn onClick={openModal}>술고!</RequestBtn>
               </RequestBanner>

@@ -17,7 +17,7 @@ function Router() {
         <Route path="/list/matching" element={<List />} />
         <Route path="/users/:id" element={<Detail />} />
         <Route path="/survey" element={<Survey />} />
-        <Route path="/mypage" element={<Mypage />} />
+        <Route path="/profile" element={<Mypage />} />
       </Routes>
     </BrowserRouter>
   );
