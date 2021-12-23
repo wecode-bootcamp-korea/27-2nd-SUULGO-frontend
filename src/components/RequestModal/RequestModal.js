@@ -12,7 +12,7 @@ function RequestModal({ isOpen, close, id }) {
   const sendAlarm = () => {
     fetch(API.promise, {
       method: 'POST',
-      headers: { Authorization: localStorage.getItem('Authorization') },
+      headers: { Authorization: localStorage.getItem('token') },
       body: JSON.stringify({
         respondent_id: id,
         time: dateInForm,

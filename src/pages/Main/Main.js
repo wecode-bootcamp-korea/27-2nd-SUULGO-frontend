@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Icons from '../Main/Icons';
-
 function Main() {
   const [member, setMember] = useState(true);
 
   function changPage() {
     setMember(prev => !prev);
   }
+  const navigate = useNavigate();
+  const goToList = () => {
+    navigate('/list/matching');
+  };
   return (
     <div>
       {member ? (
@@ -38,7 +42,7 @@ function Main() {
               <Title>3초에 1명</Title>
               <Title>위코더를 찾았어요!</Title>
 
-              <Button>빠른 서칭</Button>
+              <Button onClick={goToList}>빠른 서칭</Button>
             </MainPageLeft>
             <MainPageRight>
               <RightImage src="/images/suulgolog.png" />

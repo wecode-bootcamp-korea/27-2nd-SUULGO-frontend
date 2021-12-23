@@ -1,9 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function ListMainCard({ img, classNumber, name }) {
+function ListMainCard({ img, classNumber, name, id }) {
+  const navigate = useNavigate();
+  const goToDetail = () => {
+    navigate(`/users/${id}`);
+  };
   return (
-    <MainList>
+    <MainList onClick={goToDetail}>
       <MainImage src={img} />
       <MainNickName>
         {classNumber}
@@ -21,6 +26,7 @@ const MainList = styled.div`
   margin: 80px 0px 0px 30px;
   border: 1px solid wheat;
   border-radius: 3px;
+  cursor: pointer;
 `;
 
 const MainImage = styled.img``;

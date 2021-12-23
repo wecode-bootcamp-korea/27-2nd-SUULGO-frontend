@@ -1,4 +1,4 @@
-const BASE_URL_SUULGO = 'http://10.58.4.199:8000';
+const BASE_URL_SUULGO = 'http://13.125.233.68:8000';
 
 const API = {
   login: `${BASE_URL_SUULGO}/users/login`,
