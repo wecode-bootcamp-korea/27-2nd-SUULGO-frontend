@@ -21,22 +21,24 @@ function ListMainCard({ img, classNumber, name, id }) {
 }
 
 const MainList = styled.div`
-  width: 350px;
-  height: 200px;
-  margin: 80px 0px 0px 30px;
-  border: 1px solid wheat;
-  border-radius: 3px;
+  width: 280px;
+  margin: 20px;
+  border: 1px solid ${({ theme }) => theme.borderGrey};
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px ${({ theme }) => theme.borderGrey};
   cursor: pointer;
 `;
 
-const MainImage = styled.img``;
+const MainImage = styled.img`
+  width: 100%;
+  height: 280px;
+`;
 
-const MainNickName = styled.div`
-  height: 50px;
-  padding-top: 15px;
-  border: 0.5px solid #8fbc8f;
-  border-radius: 3px;
-  font-weight: bold;
+const MainNickName = styled.p`
+  margin: 20px;
+  font-size: 18px;
+  align-items: center;
+  color: ${({ theme }) => theme.black};
 `;
 
 export default ListMainCard;
