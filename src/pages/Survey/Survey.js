@@ -40,11 +40,66 @@ function Survey() {
 
   const surveyCategory = SURVEY_DATA[currentPage].category;
 
+  const currentServey = {
+    single: (
+      <SingleQuestion
+        surveyLists={SURVEY_DATA[currentPage]}
+        singleValue={singleValue}
+        setSingleValue={setSingleValue}
+        surveyCategory={surveyCategory}
+      />
+    ),
+    plural: (
+      <PluralQuestion
+        surveyLists={SURVEY_DATA[currentPage].answer}
+        pluralValue={pluralValue}
+        setPluralValue={setPluralValue}
+        surveyCategory={surveyCategory}
+      />
+    ),
+    free: (
+      <FreeQuestion
+        surveyLists={SURVEY_DATA[currentPage].answer}
+        freeValue={freeValue}
+        setFreeValue={setFreeValue}
+      />
+    ),
+    number: (
+      <NumberQuestion
+        surveyLists={SURVEY_DATA[currentPage].answer}
+        setNumberValue={setNumberValue}
+      />
+    ),
+  };
+
   const isFreeValue =
     !!freeValue.hobby &&
     !!freeValue.favorite_place &&
     !!freeValue.favorite_food &&
     !!freeValue.comment;
+
+  const optionWarning = {
+    single: (
+      <WarnnigMessage>
+        {!singleValue[surveyCategory] && `옵션을 선택해주세요`}
+      </WarnnigMessage>
+    ),
+    plural: (
+      <WarnnigMessage>
+        {!(
+          pluralValue[surveyCategory] && !!pluralValue[surveyCategory].length
+        ) && `옵션을 선택해주세요`}
+      </WarnnigMessage>
+    ),
+    free: (
+      <WarnnigMessage>{!isFreeValue && `옵션을 선택해주세요`}</WarnnigMessage>
+    ),
+    number: (
+      <WarnnigMessage>
+        {!numberValue[surveyCategory] && `옵션을 선택해주세요`}
+      </WarnnigMessage>
+    ),
+  };
 
   const submitSurvey = () => {
     if (!!localStorage.getItem('token')) {
@@ -104,49 +159,9 @@ function Survey() {
             <IndicateNumber>{completedPercent}%</IndicateNumber>
           </IndicateBox>
           <SurveyTitle>{SURVEY_DATA[currentPage].question}</SurveyTitle>
-          {(() => {
-            switch (SURVEY_DATA[currentPage].type) {
-              case 'single':
-                return (
-                  <SingleQuestion
-                    surveyLists={SURVEY_DATA[currentPage]}
-                    singleValue={singleValue}
-                    setSingleValue={setSingleValue}
-                    surveyCategory={surveyCategory}
-                  />
-                );
-              case 'plural':
-                return (
-                  <PluralQuestion
-                    surveyLists={SURVEY_DATA[currentPage].answer}
-                    pluralValue={pluralValue}
-                    setPluralValue={setPluralValue}
-                    surveyCategory={surveyCategory}
-                  />
-                );
-              case 'free':
-                return (
-                  <FreeQuestion
-                    surveyLists={SURVEY_DATA[currentPage].answer}
-                    freeValue={freeValue}
-                    setFreeValue={setFreeValue}
-                  />
-                );
-              case 'number':
-                return (
-                  <NumberQuestion
-                    surveyLists={SURVEY_DATA[currentPage].answer}
-                    setNumberValue={setNumberValue}
-                  />
-                );
-              default:
-                return null;
-            }
-          })()}
+          {currentServey[SURVEY_DATA[currentPage].type]}
           <ButtonWrap>
-            <WarnnigMessage>
-              {!numberValue && `옵션을 선택해주세요`}
-            </WarnnigMessage>
+            {optionWarning[SURVEY_DATA[currentPage].type]}
             <ButtonBox>
               {currentPage !== 0 && <Button onClick={backToPage}>이전</Button>}
               {currentPage !== SURVEY_DATA.length - 1 ? (
