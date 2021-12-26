@@ -20,7 +20,7 @@
 
 ### 역할
 
-- [`구유진`](https://github.com/sodalite1204) &nbsp; PM • Frontend •
+- [`구유진`](https://github.com/sodalite1204) &nbsp; PM • Frontend 
 - [`오동녘어진이`](https://github.com/eojine94) &nbsp; Frontend • 프론트 엔드 테크 리더
 - [`김재호`](https://github.com/wogh09) &nbsp; Frontend • 퍼포먼스 관리
 - [`김은찬`](https://github.com/Daco2020) &nbsp; Backend • 백엔드 테크 리더
@@ -55,6 +55,22 @@
   - 일치 태그 표시
 - 마이 페이지
 
+#### 내가 맡은 기능
+- 네브바
+  - sticky한 네브바 구현  
+  - 카카오 API를 통한 소셜 로그인 / 로그아웃 구현
+  - 로그인 시, 카카오에서 받아온 이미지와, 아이디를 localstorage에 저장하여 로그인시만 네브바에 노출되게 구현 
+  ![](https://images.velog.io/images/sodalite1204/post/3b06a6bf-15b2-4bf2-8152-42c907973d9a/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB-%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8-2021-12-26-21.13.58.gif)
+  - 로그인시, fetch의 result 에 서베이정보의 유무를 navagation을 이용해 분기처리
+- 설문조사 페이지
+  - 상수데이터를 이용한 설문조사 구현
+  - 설문조사 데이터를 map함수와 컴포넌트를 이용하여, 유지보수의 효율성을 높임
+  - 질문 진척도를 인디케이터에 transition효과를 주어 스무스하게 표현
+  - 질문사항은 객체를 변수로 담아 작동시간을 최소화함
+  - 각 e.target.value를 이용하여, 이전, 다음으로 가도 답변이 유지될 수 있게 구현
+  - 문제당 유효성검사를 진행하여, 각 state에 값이 없으면 버튼이 눌러지지 않게 구현
+  - 문제 입력유무에 따라 '워닝메시지'가 나오게 구현
+  
 ### Reference
 
 - 이 프로젝트는 숨고 사이트를 참조하여 학습목적으로 만들었습니다.
