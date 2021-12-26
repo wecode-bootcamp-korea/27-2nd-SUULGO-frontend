@@ -17,7 +17,7 @@ function ListMainCard({ point, img, classNumber, name, id, location }) {
             술고점수 :&nbsp;<Point>{point}</Point>점&nbsp;&nbsp;
           </span>
         )}
-        {classNumber}기 &nbsp;
+        {classNumber === 1004 ? '멘토' : `${classNumber}기`}&nbsp;
         {name}
       </MainNickName>
     </MainList>

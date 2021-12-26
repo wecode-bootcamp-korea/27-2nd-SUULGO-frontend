@@ -8,7 +8,7 @@ function BeforeLogin({ setIsLogin }) {
   const navigate = useNavigate();
 
   const loginWithKakao = () =>
-    Kakao.Auth.login({
+    Kakao.Auth.loginForm({
       success: function (response) {
         fetch(API.login, {
           headers: {
