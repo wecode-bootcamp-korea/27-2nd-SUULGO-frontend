@@ -29,8 +29,12 @@ const MainList = styled.div`
   margin: 20px;
   border: 1px solid ${({ theme }) => theme.borderGrey};
   border-radius: 5px;
-  box-shadow: 3px 3px 3px ${({ theme }) => theme.borderGrey};
+  box-shadow: 0px 1px 3px ${({ theme }) => theme.borderGrey};
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-10px);
+  }
 `;
 
 const MainImage = styled.img`

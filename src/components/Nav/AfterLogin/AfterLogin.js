@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { BsBell } from 'react-icons/bs';
 import { AiFillHeart } from 'react-icons/ai';
+import AlarmModal from './Alarm/AlarmModal';
+import API from '../../../config';
 
 function AfterLogin({ username, profileImage, setIsLogin }) {
   const navigate = useNavigate();
+
+  const [promiseCount, setPromiseCount] = useState('');
+  const [promiseName, setPromiseName] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   const { Kakao } = window;
   const clickToLogout = () => {
     setIsLogin(false);
@@ -21,14 +36,33 @@ function AfterLogin({ username, profileImage, setIsLogin }) {
     navigate('/');
   };
 
+  useEffect(() => {
+    if (!!localStorage.getItem('survey')) {
+      fetch(`${API.users}/appointment-alarm`, {
+        headers: { Authorization: localStorage.getItem('token') },
+      })
+        .then(res => res.json())
+        .then(data => {
+          setPromiseCount(data.message.count);
+          setPromiseName(data.message.requester);
+        });
+    } else {
+      alert('설문조사해주세요^^');
+    }
+  }, []);
   return (
     <AfterLoginBar>
       <Slogan>코드 치다 지친 위코더여..술..GO? </Slogan>
       <AfterContainer>
         <BellButton>
-          <Bell />
-          <Heart />
+          <Bell onClick={openModal} />
+          {!!promiseCount > 0 && <Heart />}
         </BellButton>
+        <AlarmModal
+          showModal={showModal}
+          closeModal={closeModal}
+          promiseName={promiseName}
+        />
         <Link to="/profile">
           <UserProfile src={profileImage} alt="profile" />
         </Link>
@@ -66,6 +100,7 @@ const BellButton = styled.button`
 `;
 
 const Bell = styled(BsBell)`
+  position: relative;
   margin: 10px;
   color: ${({ theme }) => theme.mint};
   font-size: 24px;
